@@ -11,7 +11,7 @@ use esp_idf_hal::i2c;
 use esp_idf_hal::peripherals::Peripherals;
 use esp_idf_hal::prelude::*;
 
-use embedded_svc::mqtt::client::{Connection, Publish, QoS};
+use embedded_svc::mqtt::client::{Publish, QoS};
 use embedded_svc::wifi::*;
 use esp_idf_svc::mqtt::client::{EspMqttClient, MqttClientConfiguration};
 use esp_idf_svc::netif::EspNetifStack;
@@ -105,22 +105,11 @@ fn main() -> anyhow::Result<()> {
         ..Default::default()
     };
 
-    let (mut client, mut connection) = EspMqttClient::new(MQTT_URL, &conf)?;
+    let mut client = EspMqttClient::new(MQTT_URL, &conf, move |event| {
+        println!("MQTT event: {:?}", event);
+    })?;
 
     println!("MQTT client started");
-
-    thread::spawn(move || {
-        println!("MQTT Listening for messages");
-
-        while let Some(msg) = connection.next() {
-            match msg {
-                Err(e) => println!("MQTT Message ERROR: {}", e),
-                Ok(msg) => println!("MQTT Message: {:?}", msg),
-            }
-        }
-
-        println!("MQTT connection loop exit");
-    });
 
     client.publish("/aht20", QoS::AtMostOnce, false, "hi".as_bytes())?;
 

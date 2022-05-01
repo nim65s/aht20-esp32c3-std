@@ -29,7 +29,7 @@ dependencies = [
  "anyhow",
  "embedded-hal 0.2.7",
  "embedded-svc",
- "embuild 0.28.5",
+ "embuild",
  "esp-idf-hal",
  "esp-idf-svc",
  "esp-idf-sys",
@@ -325,9 +325,9 @@ dependencies = [
 
 [[package]]
 name = "embedded-svc"
-version = "0.20.3"
+version = "0.21.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d0a3de276c11e6a11fe2782b597ac31978e2c4f07301e76aa6e46eafe1ec81b7"
+checksum = "4e99ddc8bfda2f42942abb4198cab65e57b7aa92f35356bf3609e67957815728"
 dependencies = [
  "anyhow",
  "enumset",
@@ -339,26 +339,6 @@ dependencies = [
  "serde_json",
  "strum 0.23.0",
  "strum_macros 0.23.1",
-]
-
-[[package]]
-name = "embuild"
-version = "0.28.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cf7d180dca4cbfa157261f9ebe5bcbf1006912726ec22a37c1679df59dec8756"
-dependencies = [
- "anyhow",
- "bitflags",
- "dirs",
- "log",
- "serde",
- "serde_json",
- "shlex",
- "strum 0.23.0",
- "strum_macros 0.23.1",
- "thiserror",
- "toml",
- "xmas-elf",
 ]
 
 [[package]]
@@ -423,29 +403,29 @@ dependencies = [
 
 [[package]]
 name = "esp-idf-hal"
-version = "0.36.0"
+version = "0.37.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4df6f7e60bdb5b5bebdcb812da3a25bf6efe38a102c3c68579c122b1998bcc2e"
+checksum = "0c58ee3e11db94129d3f4bd955441058272ef21dabaa9ec6e18e3871ca7cef0c"
 dependencies = [
  "anyhow",
  "embedded-hal 0.2.7",
  "embedded-hal 1.0.0-alpha.8",
  "embedded-svc",
- "embuild 0.28.5",
+ "embuild",
  "esp-idf-sys",
  "nb 0.1.3",
 ]
 
 [[package]]
 name = "esp-idf-svc"
-version = "0.40.1"
+version = "0.41.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0f0be8db00cb9997222376806011ebd4433fed5579ceb976421364faab9d9bb9"
+checksum = "a9ea20f98f05a6226e2fa5fb9b335a03f11218407c98c83eed01b3541d43ef39"
 dependencies = [
  "anyhow",
  "cstr_core",
  "embedded-svc",
- "embuild 0.28.5",
+ "embuild",
  "enumset",
  "esp-idf-hal",
  "esp-idf-sys",
@@ -460,7 +440,7 @@ checksum = "8ea5629b28274d6d33075c7de81f4ad30d19129b6b6c1dc9954d542a56acf44f"
 dependencies = [
  "anyhow",
  "bindgen",
- "embuild 0.29.0",
+ "embuild",
  "paste",
  "regex",
  "strum 0.24.0",

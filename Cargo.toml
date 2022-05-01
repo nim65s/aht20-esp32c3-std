@@ -16,12 +16,12 @@ opt-level = "z"
 aht20 = { git = "https://github.com/nim65s/aht20" }
 anyhow = "1"
 embedded-hal = { version = "0.2.7" }
-embedded-svc = "0.20.3"
-esp-idf-hal = "0.36.0"
-esp-idf-svc = "0.40.0"
-esp-idf-sys = { version = "0.31", features = ["binstart"] }
+embedded-svc = "0.21"
+esp-idf-hal = "0.37"
+esp-idf-svc = "0.41.0"
+esp-idf-sys = { version = "0.31.1", features = ["binstart"] }
 nb = "1.0.0"
 
 [build-dependencies]
-embuild = "0.28"
+embuild = "0.29"
 anyhow = "1"
