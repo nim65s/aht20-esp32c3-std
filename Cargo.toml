@@ -1,0 +1,27 @@
+[package]
+name = "aht20-esp32c3-std"
+version = "0.1.0"
+authors = ["Guilhem Saurel <guilhem.saurel@laas.fr>"]
+edition = "2018"
+resolver = "2"
+
+[profile.release]
+opt-level = "s"
+
+[profile.dev]
+debug = true # Symbols are nice and they don't increase the size on Flash
+opt-level = "z"
+
+[dependencies]
+aht20 = { git = "https://github.com/nim65s/aht20" }
+anyhow = "1"
+embedded-hal = { version = "0.2.7" }
+embedded-svc = "0.20.3"
+esp-idf-hal = "0.36.0"
+esp-idf-svc = "0.40.0"
+esp-idf-sys = { version = "0.31", features = ["binstart"] }
+nb = "1.0.0"
+
+[build-dependencies]
+embuild = "0.28"
+anyhow = "1"
