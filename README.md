@@ -4,4 +4,6 @@
 cargo espflash --release --monitor /dev/ttyUSB0  # adapt your tty here
 ```
 
+Basically https://github.com/esp-rs/esp-idf-template + https://github.com/fmckeogh/aht20 + tasmota mqtt style
+
 no-std version: https://github.com/nim65s/aht20-esp32c3-nostd
