@@ -4,6 +4,7 @@ use std::thread;
 use std::time::Duration;
 
 use anyhow::bail;
+use serde_json::json;
 
 //use esp_idf_hal::gpio::{Gpio0, Gpio1, Gpio2, Gpio3, Gpio4};
 use esp_idf_hal::delay;
@@ -96,6 +97,14 @@ fn main() -> anyhow::Result<()> {
         bail!("Unexpected Wifi status: {:?}", status);
     }
 
+    // ref. https://github.com/esp-rs/esp-idf-svc/pull/70
+    let mut device = "esp-rs".to_string();
+    if let Some(mac) = wifi.get_mac_sta()? {
+        device = format!("esp-rs_{:02X}{:02X}{:02X}", mac[3], mac[4], mac[5]);
+    }
+    println!("device: {}", device);
+    let topic = format!("tele/{}/SENSOR", device);
+
     println!("About to start MQTT client");
 
     let conf = MqttClientConfiguration {
@@ -111,24 +120,11 @@ fn main() -> anyhow::Result<()> {
 
     println!("MQTT client started");
 
-    client.publish("/aht20", QoS::AtMostOnce, false, "hi".as_bytes())?;
-
-    println!("Published a hello message to topic \"/aht20\"");
-
     loop {
         let (h, t) = dev.read().unwrap();
-        client.publish(
-            "/aht20/h",
-            QoS::AtMostOnce,
-            false,
-            h.rh().to_string().as_bytes(),
-        )?;
-        client.publish(
-            "/aht20/t",
-            QoS::AtMostOnce,
-            false,
-            t.celsius().to_string().as_bytes(),
-        )?;
-        thread::sleep(Duration::from_millis(60_000));
+        let (h, t) = (h.rh(), t.celsius());
+        let data = json!({"AHT20": {"Temperature": t, "Humidity": h}, "TempUnit": "C"});
+        client.publish(&topic, QoS::AtMostOnce, false, data.to_string().as_bytes())?;
+        thread::sleep(Duration::from_secs(300));
     }
 }

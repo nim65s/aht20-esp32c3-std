@@ -34,6 +34,7 @@ dependencies = [
  "esp-idf-svc",
  "esp-idf-sys",
  "nb 1.0.0",
+ "serde_json",
 ]
 
 [[package]]
@@ -419,8 +420,7 @@ dependencies = [
 [[package]]
 name = "esp-idf-svc"
 version = "0.41.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a9ea20f98f05a6226e2fa5fb9b335a03f11218407c98c83eed01b3541d43ef39"
+source = "git+https://github.com/nim65s/esp-idf-svc?branch=get-wifi-mac#4819f267222d627acf01110000bc7a949733dd73"
 dependencies = [
  "anyhow",
  "cstr_core",
