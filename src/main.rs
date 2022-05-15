@@ -97,9 +97,11 @@ fn main() -> anyhow::Result<()> {
         bail!("Unexpected Wifi status: {:?}", status);
     }
 
-    // ref. https://github.com/esp-rs/esp-idf-svc/pull/70
     let mut device = "esp-rs".to_string();
-    if let Some(mac) = wifi.get_mac_sta()? {
+    if let Some(mac) = wifi.with_client_netif(|netif| match netif {
+        Some(netif) => netif.get_mac().ok(),
+        _ => None,
+    }) {
         device = format!("esp-rs_{:02X}{:02X}{:02X}", mac[3], mac[4], mac[5]);
     }
     println!("device: {}", device);

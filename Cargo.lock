@@ -404,9 +404,9 @@ dependencies = [
 
 [[package]]
 name = "esp-idf-hal"
-version = "0.37.1"
+version = "0.37.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0c58ee3e11db94129d3f4bd955441058272ef21dabaa9ec6e18e3871ca7cef0c"
+checksum = "f4c4590e9cc91a22315166a30d83e2c70ab6a317342efe2642950827fdc231ad"
 dependencies = [
  "anyhow",
  "embedded-hal 0.2.7",
@@ -419,8 +419,9 @@ dependencies = [
 
 [[package]]
 name = "esp-idf-svc"
-version = "0.41.0"
-source = "git+https://github.com/nim65s/esp-idf-svc?branch=get-wifi-mac#4819f267222d627acf01110000bc7a949733dd73"
+version = "0.41.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f0c10e378cba07d91d1ab4ed0f71e774ca3c82986c36f92edaa2ac2bc864fb8d"
 dependencies = [
  "anyhow",
  "cstr_core",
@@ -434,9 +435,9 @@ dependencies = [
 
 [[package]]
 name = "esp-idf-sys"
-version = "0.31.1"
+version = "0.31.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8ea5629b28274d6d33075c7de81f4ad30d19129b6b6c1dc9954d542a56acf44f"
+checksum = "b239e46fe930f21ed36a25de1b6d29a0e22b65166f3a8e44624095a671f2f56c"
 dependencies = [
  "anyhow",
  "bindgen",
